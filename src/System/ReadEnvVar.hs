@@ -5,6 +5,17 @@ module System.ReadEnvVar
     , readEnvVarDef
     ) where
 
+{-|
+Module      : System.ReadEnvVar
+Copyright   : (c) Dennis Gosnell, 2016
+License     : BSD-style (see LICENSE file)
+Maintainer  : cdep.illabout@gmail.com
+Stability   : experimental
+Portability : POSIX
+
+This Haskell module exports functions for safely reading environment variables.
+-}
+
 #if __GLASGOW_HASKELL__ < 710
 -- We don't need this import for GHC 7.10 as it exports all required functions
 -- from Prelude
