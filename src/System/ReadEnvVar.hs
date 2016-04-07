@@ -1,10 +1,18 @@
+{-# LANGUAGE CPP #-}
+
 module System.ReadEnvVar
     ( readEnvVar
     , readEnvVarDef
     ) where
 
+#if __GLASGOW_HASKELL__ < 710
+-- We don't need this import for GHC 7.10 as it exports all required functions
+-- from Prelude
+import Control.Applicative
+#endif
+
 import Data.Maybe (fromMaybe)
-import System.Environment (getEnv, lookupEnv)
+import System.Environment (lookupEnv)
 import Text.Read (readMaybe)
 
 -- | Lookup a value from an environment variable and read it in with
@@ -33,7 +41,9 @@ readEnvVarDef envVar def = fromMaybe def <$> readEnvVar envVar
 -- Just 2000
 -- >>> readEnvVar "THIS_ENV_VAR_WILL_NOT_EXIST" :: IO (Maybe Int)
 -- Nothing
-readEnvVar :: Read a => String -> IO (Maybe a)
+readEnvVar :: Read a
+           => String       -- ^ environment variable to lookup
+           -> IO (Maybe a)
 readEnvVar envVar = do
     maybeEnvVal <- lookupEnv envVar
     case maybeEnvVal of
