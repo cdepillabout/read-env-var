@@ -1,10 +1,5 @@
 {-# LANGUAGE CPP #-}
 
-module System.ReadEnvVar
-    ( readEnvVar
-    , readEnvVarDef
-    ) where
-
 {-|
 Module      : System.ReadEnvVar
 Copyright   : (c) Dennis Gosnell, 2016
@@ -15,6 +10,11 @@ Portability : POSIX
 
 This Haskell module exports functions for safely reading environment variables.
 -}
+
+module System.ReadEnvVar
+    ( readEnvVar
+    , readEnvVarDef
+    ) where
 
 #if __GLASGOW_HASKELL__ < 710
 -- We don't need this import for GHC 7.10 as it exports all required functions
