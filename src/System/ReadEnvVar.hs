@@ -55,8 +55,4 @@ readEnvVarDef envVar def = fromMaybe def <$> readEnvVar envVar
 readEnvVar :: Read a
            => String       -- ^ environment variable to lookup
            -> IO (Maybe a)
-readEnvVar envVar = do
-    maybeEnvVal <- lookupEnv envVar
-    case maybeEnvVal of
-        Nothing -> return Nothing
-        Just envVal -> return $ readMaybe envVal
+readEnvVar = fmap (>>= readMaybe) . lookupEnv
