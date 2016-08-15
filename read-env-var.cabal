@@ -1,5 +1,5 @@
 name:                read-env-var
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            Functions for safely reading environment variables.
 description:         Please see README.md
 homepage:            https://github.com/cdepillabout/read-env-var#readme
