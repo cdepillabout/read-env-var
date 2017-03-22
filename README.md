@@ -2,8 +2,8 @@
 System.ReadEnvVar
 =================
 
-[![Hackage](https://img.shields.io/hackage/v/read-env-var.svg)](https://hackage.haskell.org/package/read-env-var)
 [![Build Status](https://secure.travis-ci.org/cdepillabout/read-env-var.svg)](http://travis-ci.org/cdepillabout/read-env-var)
+[![Hackage](https://img.shields.io/hackage/v/read-env-var.svg)](https://hackage.haskell.org/package/read-env-var)
 [![Stackage LTS](http://stackage.org/package/read-env-var/badge/lts)](http://stackage.org/lts/package/read-env-var)
 [![Stackage Nightly](http://stackage.org/package/read-env-var/badge/nightly)](http://stackage.org/nightly/package/read-env-var)
 ![BSD3 license](https://img.shields.io/badge/license-BSD3-blue.svg)
