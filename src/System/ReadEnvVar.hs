@@ -103,7 +103,7 @@ readEnvDef
   -> m a
 readEnvDef envVar def = do
   maybeEnv <- readEnv envVar
-  pure $ fromMaybe def maybeEnv
+  return $ fromMaybe def maybeEnv
 
 -- | Lookup a value from an environment variable and read it in with
 -- 'readMaybe'.
@@ -143,7 +143,7 @@ readEnv
   -> m (Maybe a)
 readEnv envVar = do
   maybeEnv <- liftIO (Env.lookupEnv envVar)
-  pure $ maybeEnv >>= readMaybe
+  return $ maybeEnv >>= readMaybe
 
 -- | Like 'lookupEnv' but take a default value.
 --
@@ -165,7 +165,7 @@ lookupEnvDef
   -> m a
 lookupEnvDef envVar defaultValue = do
   maybeEnv <- liftIO $ Env.lookupEnv envVar
-  pure $ maybe defaultValue fromString maybeEnv
+  return $ maybe defaultValue fromString maybeEnv
 
 -- | Like "System.Environment"\'s 'Env.lookupEnv', but using 'IsString' to make
 -- it more general.
@@ -186,7 +186,7 @@ lookupEnv
   -> m (Maybe a)
 lookupEnv envVar = do
   maybeEnv <- liftIO $ Env.lookupEnv envVar
-  pure $ fmap fromString maybeEnv
+  return $ fmap fromString maybeEnv
 
 -- | 'Exception' thrown by 'lookupEnvEx' and 'readEnvEx' when the
 -- environment variable being read doesn't exist.
@@ -221,7 +221,7 @@ lookupEnvEx envVar = do
   maybeEnv <- liftIO (Env.lookupEnv envVar)
   case maybeEnv of
     Nothing -> throwM $ EnvVarDoesNotExistException envVar
-    Just env -> pure $ fromString env
+    Just env -> return $ fromString env
 
 -- | Lookup a value from an environment variable and read it in with
 -- 'readMaybe'.  Throw an 'EnvVarDoesNotExistException' if the environment
@@ -266,7 +266,7 @@ readEnvEx envVar = do
   maybeEnv <- liftIO (Env.lookupEnv envVar)
   case maybeEnv of
     Nothing -> throwM $ EnvVarDoesNotExistException envVar
-    Just env -> pure $ readMaybe env
+    Just env -> return $ readMaybe env
 
 -- | 'Exception' thrown by 'readEnvEx'' when the environment variable
 -- cannot be 'read'.
@@ -322,4 +322,4 @@ readEnvEx' envVar = do
   maybeEnv <- readEnvEx envVar
   case maybeEnv of
     Nothing -> throwM $ EnvVarCannotBeReadException envVar
-    Just env -> pure env
+    Just env -> return env
